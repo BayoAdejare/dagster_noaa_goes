@@ -1,10 +1,10 @@
-# Modern Data Orchestration Platform
+# Modern Data Orchestration Platform - Dagster SDA
 
 An example using [Dagster Software-Defined Assets](https://docs.dagster.io/concepts/assets/software-defined-assets) to orchestrate a batch ETL pipeline. 
 Process downloads [NOAA GOES-R GLM](https://www.goes-r.gov/spacesegment/glm.html) files from AWS s3 bucket, converts them into time series csv 
 and loads them to a local backend, persistant duckdb. 
 
-Blog post: coming soon!
+Blog post: [Modern Data Platform Orchestration with Dagster Software-Defined Assets](https://medium.com/@adebayoadejare/modern-data-platform-orchestration-with-dagster-software-defined-assets-6a7182b0d834)
 
 ![Alt text](screenshot/dagit_UI_GAL.png "Dagit UI displaying Global Asset Lineage")
 
