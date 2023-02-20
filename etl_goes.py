@@ -72,7 +72,7 @@ def transform_goes(extract_goes: str=None, context: str=None) -> pd.DataFrame:
         flash_time = glm.variables['flash_time_offset_of_first_event']
         flash_energy = glm.variables['flash_energy'][:]
         dtime = nc.num2date(flash_time[:],flash_time.units)
-        # Flatten multi-dimensional data into 2D data         
+        # Flatten multi-dimensional data into series        
         flash_energy_ts = pd.Series(flash_energy, index=dtime)
         # Headers 
         with open(dest_filename, 'w') as glm_file:
@@ -99,7 +99,7 @@ def load_goes(transform_goes: str=None, context: str=None) -> pd.DataFrame:
     # Navigate to source
     os.chdir(source_folder)
     # Create in-memory db
-    conn = duckdb.connect("flashdb.db")
+    conn = duckdb.connect(f"{dest_folder}/flashdb.db")
     try:
         for filename in glm_files:
             # Copy to folder
@@ -112,7 +112,18 @@ def load_goes(transform_goes: str=None, context: str=None) -> pd.DataFrame:
     except Exception as db_e:
         # table likely exist try insert
         conn.execute(f"INSERT INTO flash_tbl SELECT * FROM read_csv_auto('*.csv', header=True, filename=True);")
-    # os.remove('*.csv')
+    try:
+        # Navigate to destination
+        os.chdir(dest_folder)
+        os.makedirs('loaded')
+        for filename in glm_files:
+            # Move loaded files
+            print(f"Filename: {filename}")
+            shutil.move(os.path.join(os.getcwd(), filename), "loaded")
+    except Exception as e:
+        print("Exception errors received.")
+    # cleanup
+    shutil.rmtree('loaded')
     # List files loaded
     df_load = conn.execute("SHOW TABLES;").df()
     return df_load

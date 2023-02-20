@@ -4,6 +4,8 @@ An example using [Dagster Software-Defined Assets](https://docs.dagster.io/conce
 Process downloads [NOAA GOES-R GLM](https://www.goes-r.gov/spacesegment/glm.html) files from AWS s3 bucket, converts them into time series csv 
 and loads them to a local backend, persistant duckdb. 
 
+Blog post: coming soon!
+
 ![Alt text](screenshot/dagit_UI_GAL.png "Dagit UI displaying Global Asset Lineage")
 
 ## Installation
