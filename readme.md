@@ -14,19 +14,11 @@ First make sure, you have the requirements installed, this can be installed from
 
 `pip install -r requirements.txt`
 
-## Quick Start
-
 Run the command to start the dagster orchestration framework: 
 
 `dagster dev -f etl_asset_job.py # Start dagster daemon and dagit ui`
 
 The dagster daemon is required to start the scheduling, from the dagit ui, you can run and monitor the data assets.
-
-## Testing 
-
-Use the following command to run tests:
-
-`pytest`
 
 ## License
 
