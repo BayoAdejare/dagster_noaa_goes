@@ -118,7 +118,6 @@ def load_goes(transform_goes: str=None, context: str=None) -> pd.DataFrame:
         os.makedirs('loaded')
         for filename in glm_files:
             # Move loaded files
-            print(f"Filename: {filename}")
             shutil.move(os.path.join(os.getcwd(), filename), "loaded")
     except Exception as e:
         print("Exception errors received.")
