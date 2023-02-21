@@ -108,7 +108,13 @@ def load_goes(transform_goes: str=None, context: str=None) -> pd.DataFrame:
         print("Exception errors received.")
     try:
         # create the table "flash_tbl" from the csv files
-        conn.execute(f"CREATE TABLE flash_tbl AS SELECT * FROM read_csv_auto('*.csv', header=True, filename=True);")
+        conn.execute(f"""
+            CREATE TABLE flash_tbl 
+            AS 
+            SELECT 
+                *
+            FROM read_csv_auto('*.csv', header=True, filename=True, types={{'flash_date_time': TIMESTAMP,'flash_energy': DOUBLE}});
+            """)
     except Exception as db_e:
         # table likely exist try insert
         conn.execute(f"INSERT INTO flash_tbl SELECT * FROM read_csv_auto('*.csv', header=True, filename=True);")
