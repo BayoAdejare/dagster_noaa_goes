@@ -13,14 +13,14 @@ asset_schedule = ScheduleDefinition(
     execution_timezone="America/New_York"
 )
 
-# Parameters:
-# GOES files ordered in chronological 
-# This will set the time to previous hour.
+# Optional parameters:
+# GOES files are ordered chronologically 
+# Default to previous hour if no date env params
 dt = datetime.datetime.utcnow() - datetime.timedelta(hours=1)
-year = dt.strftime('%Y')
-day_of_year = dt.strftime('%j')
-hour = dt.strftime('%H')
-
+year = os.getenv("GOES_YEAR", dt.strftime('%Y')
+day_of_year = os.getenv("GOES_DOY", dt.strftime('%j'))
+hour = os.getenv("GOES_HOUR", dt.strftime('%H'))
+# Required parameters:
 bucket_name = os.getenv("S3_BUCKET") # Satellite i.e. GOES-18  
 product_line = os.getenv("PRODUCT")  # Product line id i.e. ABI...
 

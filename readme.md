@@ -22,6 +22,12 @@ Run the command to start the dagster orchestration framework:
 
 The dagster daemon is required to start the scheduling, from the dagit ui, you can run and monitor the data assets.
 
+## Parametrized Pipeline
+
+Two required parameters, S3_BUCKET and PRODUCT, are configured by default. There is current support for three optional paramters for loading specific available files: GOES_YEAR, GOES_DOY and GOES_HOUR
+
+`export GOES_YEAR=2022; export GOES_DOY=365; export GOES_HOUR=05 # Run the pipeline for Dec 31, 2022 5 AM files`
+
 ## Testing 
 
 Use the following command to run tests:
