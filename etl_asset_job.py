@@ -17,7 +17,7 @@ asset_schedule = ScheduleDefinition(
 # GOES files are ordered chronologically 
 # Default to previous hour if no date env params
 dt = datetime.datetime.utcnow() - datetime.timedelta(hours=1)
-year = os.getenv("GOES_YEAR", dt.strftime('%Y')
+year = os.getenv("GOES_YEAR", dt.strftime('%Y'))
 day_of_year = os.getenv("GOES_DOY", dt.strftime('%j'))
 hour = os.getenv("GOES_HOUR", dt.strftime('%H'))
 # Required parameters:
